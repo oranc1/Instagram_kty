@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.validation.Valid;
 
+import org.hibernate.internal.build.AllowSysOut;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -12,8 +13,10 @@ import org.springframework.validation.BindingResult;
 import org.springframework.validation.FieldError;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.cos.photogramstart.domain.user.User;
+import com.cos.photogramstart.handler.ex.CustomValidationException;
 import com.cos.photogramstart.service.AuthService;
 import com.cos.photogramstart.web.dto.auth.SignupDto;
 
@@ -57,18 +60,23 @@ public class AuthController {
 			Map<String, String> errorMap = new HashMap<>();
 			
 			for(FieldError error:bindingResult.getFieldErrors()) {
-				
+				errorMap.put(error.getField(), error.getDefaultMessage()); // put 해서 key 와 값을 설정
+				System.out.println("================");
+				System.out.println(error.getDefaultMessage());
+				System.out.println("================");
 			}
+			throw new CustomValidationException("유효성검사 실패함", errorMap);
+		} else {
+			log.info(signupDto.toString());
+			// User <- SignupDTO
+			User user = signupDto.toEntity();
+			log.info(user.toString());
+			User userEntity = authService.회원가입(user);
+			System.out.println(userEntity);
+			return "auth/signin";
 		}
 		
 		
-		log.info(signupDto.toString());
-		// User <- SignupDTO
-		User user = signupDto.toEntity();
-		log.info(user.toString());
-		User userEntity = authService.회원가입(user);
-		System.out.println(userEntity);
-		return "auth/signin";
 	}
 	
 	
