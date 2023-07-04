@@ -2,6 +2,7 @@ package com.cos.photogramstart.domain.user;
 
 import java.time.LocalDateTime;
 
+import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -25,12 +26,15 @@ public class User {
 	@GeneratedValue(strategy = GenerationType.IDENTITY) // 번호 증가 전략이 데이터베이스를 따라간다. // MySql 을 쓰면 AutoIncerement , 오라클이면 시퀀스 로 따라갸아하기떄문에 IDENTITY 로 씀
 	private int id; 
 	
+	@Column(length = 20, unique=true)
 	private String username;
+	@Column(nullable = false)
 	private String password;
-	
+	@Column(nullable = false)
 	private String name;
 	private String website; // 웹사이트
 	private String bio; // 자기소개
+	@Column(nullable = false)
 	private String email;
 	private String phone;
 	private String gender;
