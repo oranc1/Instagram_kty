@@ -11,6 +11,7 @@ import lombok.Data;
 @Data
 public class SignupDto {
 	// https://bamdule.tistory.com/35 (@Valid 어노테이션 종류)
+	// 2 ~ 20 사이 가능
 	@Size(min = 2, max = 20)
 	@NotBlank
 	private String username;
