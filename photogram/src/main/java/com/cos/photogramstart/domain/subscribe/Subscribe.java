@@ -41,7 +41,7 @@ public class Subscribe { // 중간테이블
 	@ManyToOne
 	private User fromUser; // 구독하는 유저
 	
-	@JoinColumn(name = "")
+	@JoinColumn(name = "toUserId")
 	@ManyToOne
 	private User toUser; // 구독받는 유저
 	
