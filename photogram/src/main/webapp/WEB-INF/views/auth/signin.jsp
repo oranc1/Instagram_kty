@@ -24,12 +24,12 @@
                    <div class="login__form">
                         <h1><img src="/images/logo.jpg" alt=""></h1>
                         
-						<!--로그인 인풋-->
-						<form class="login__input" action="/auth/signin/" method="POST"> <!--바디에 담고 데이터를 들고가야한다 - 주소창에 값이 안남아야한다 그래서 POST -->
-						    <input type="text" name="username" placeholder="유저네임" required="required" />
-						    <input type="password" name="password" placeholder="비밀번호" required="required" />
-						    <button>로그인</button>
-						</form>
+                        <!--로그인 인풋-->
+                        <form class="login__input" action="/login" method="post">
+                            <input type="text" name="username" placeholder="유저네임">
+                            <input type="password" name="password" placeholder="비밀번호">
+                            <button>로그인</button>
+                        </form>
                         <!--로그인 인풋end-->
                         
                         <!-- 또는 -->

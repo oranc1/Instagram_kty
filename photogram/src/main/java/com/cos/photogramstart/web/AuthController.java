@@ -40,14 +40,12 @@ public class AuthController {
 //  3)@RequiredArgsConstructor // final DI 할떄 사용 - 이걸 사용할거임
 	
 	@GetMapping("/auth/signin")
-	public String signinForm() {
-		
+	public String loginForm() {
 		return "auth/signin";
 	}
-	
+
 	@GetMapping("/auth/signup")
-	public String signupForm() {
-		
+	public String joinForm() {
 		return "auth/signup";
 	}
 	
